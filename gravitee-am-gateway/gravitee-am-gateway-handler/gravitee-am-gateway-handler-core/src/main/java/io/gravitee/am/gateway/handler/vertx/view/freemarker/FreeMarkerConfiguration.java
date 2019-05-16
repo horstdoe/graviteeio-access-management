@@ -18,6 +18,7 @@ package io.gravitee.am.gateway.handler.vertx.view.freemarker;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.TemplateLoader;
+import freemarker.core.HTMLOutputFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +45,7 @@ public class FreeMarkerConfiguration {
         final freemarker.template.Configuration configuration =
                 new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_22);
         configuration.setLocalizedLookup(false);
+        configuration.setOutputFormat(HTMLOutputFormat.INSTANCE);
         try {
             TemplateLoader[] templateLoaders = { overrideTemplateLoader(), new FileTemplateLoader(new File(templatesPath)) };
             configuration.setTemplateLoader(new MultiTemplateLoader(templateLoaders));
